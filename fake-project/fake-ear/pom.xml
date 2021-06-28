@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fake</groupId>
+        <artifactId>fake-project</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>fake-ear</artifactId>
+    <packaging>ear</packaging>
+
+    <dependencies>
+        <!-- Module dependencies -->
+        <dependency>
+            <groupId>com.fake</groupId>
+            <artifactId>fake-jaxws</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>war</type>
+            <classifier>liberty</classifier> <!-- this doesnt create the classifier but use it (creation is managed within fake-framework-superpom : pom.xml) -->
+        </dependency>
+        <dependency>
+            <groupId>com.fake</groupId>
+            <artifactId>fake-ejb</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>ejb</type>
+            <classifier>liberty</classifier> <!-- this doesnt create the classifier but use it (creation is managed within fake-framework-superpom : pom.xml) -->
+        </dependency>
+        <dependency>
+            <groupId>com.fake</groupId>
+            <artifactId>fake-rest-jaxrs</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>war</type>
+            <classifier>liberty</classifier> <!-- this doesnt create the classifier but use it (creation is managed within fake-framework-superpom : pom.xml) -->
+        </dependency>
+		
+    </dependencies>
+
+    <profiles>
+	    <profile>
+
+	        <id>liberty</id>	     
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>			
+						<build>
+							<plugins>
+								<plugin>
+									<groupId>io.openliberty.tools</groupId>
+									<artifactId>liberty-maven-plugin</artifactId>
+									<!-- <version>3.3.4</version> -->
+									 <version>3.3.5-M2-SNAPSHOT</version>
+									<executions>								
+										<execution>
+											<id>thebas</id>
+											<phase>install</phase>
+											<goals>
+												<goal>deploy</goal>
+											</goals>
+											<configuration>
+												<installDirectory>C:/workingarea/unzip/openliberty-21.0.0.6</installDirectory>
+												<looseApplication>true</looseApplication>
+											</configuration>
+										</execution>
+									</executions>
+								</plugin>
+							</plugins>
+						</build>
+
+	    </profile>
+        
+    </profiles>
+</project>

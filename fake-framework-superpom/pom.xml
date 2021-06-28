@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fake</groupId>
+    <artifactId>fake-framework-superpom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>fake-framework</module>
+    </modules>
+
+    <!-- Impose version and scope of external library and fake framework based on version property -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.fake</groupId>
+                <artifactId>fake-framework-common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+ 
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>7.0</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!-- Plugin default settings -->
+        <pluginManagement>
+            <plugins>
+                <!-- Manage compile creation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+
+                <!-- Manage jar creation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifestEntries>
+                                <Implementation-Title>fakeApp - fakeProj</Implementation-Title>
+                                <Specification-Version>1.1</Specification-Version>
+                                <git-commit>1.2</git-commit>
+                                <CI-Build-Tag>1.3</CI-Build-Tag>
+                            </manifestEntries>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <useUniqueVersions>false</useUniqueVersions>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+						<!-- no classifier usage for jar -->
+                    </configuration>
+                </plugin>
+				
+                <!-- Manage war creation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifestEntries>
+                                <Implementation-Title>fakeApp - fakeProj</Implementation-Title>
+                                <Specification-Version>1.4</Specification-Version>
+                                <git-commit>1.5</git-commit>
+                                <CI-Build-Tag>FAKETAG</CI-Build-Tag>
+                            </manifestEntries>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <useUniqueVersions>false</useUniqueVersions>
+                                <classpathPrefix>lib/</classpathPrefix>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                        <classifier>liberty</classifier>
+                    </configuration>
+                </plugin>
+				
+                <!-- Manage ear creation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>3.0.2</version>
+                    <configuration>
+                        <version>6</version>
+                        <applicationName>fakeApp</applicationName>
+                        <defaultLibBundleDir>lib</defaultLibBundleDir>
+                        <generateApplicationXml>true</generateApplicationXml>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifestEntries>
+                                <Implementation-Title>fakeApp - fakeProj</Implementation-Title>
+                                <Specification-Version>1.7</Specification-Version>
+                                <git-commit>1.8</git-commit>
+                                <CI-Build-Tag>FAKETAG</CI-Build-Tag>
+                            </manifestEntries>
+                            <manifest>
+                                <useUniqueVersions>true</useUniqueVersions>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                        <classifier>liberty</classifier>
+                    </configuration>
+                </plugin>
+				
+                <!-- Manage ejb creation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <configuration>
+                        <ejbVersion>3.1</ejbVersion>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifestEntries>
+                                <Implementation-Title>fakeApp - fakeProj</Implementation-Title>
+                                <Specification-Version>1.9</Specification-Version>
+                                <git-commit>1.10</git-commit>
+                                <CI-Build-Tag>FAKETAG</CI-Build-Tag>
+                            </manifestEntries>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <useUniqueVersions>false</useUniqueVersions>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                        <classifier>liberty</classifier>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+    <profiles>
+        <profile>
+            <id>liberty</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target_server>liberty</target_server>
+            </properties>
+        </profile>
+    </profiles>
+</project>

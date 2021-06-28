@@ -1,0 +1,15 @@
+- install fake framework :
+
+          cd fake-framework-superpom
+		  mvn install
+		  
+- compile fake project :
+
+          cd fake-project
+		  mvn package
+		  
+Expected result :
+in fake-project\fake-ear\target an ear having module with classifiers
+
+
+please note that classifier is set in fake-framework-superpom : pom.xml

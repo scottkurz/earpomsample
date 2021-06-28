@@ -1,0 +1,9 @@
+/fake-framework-superpom/fake-framework/fake-framework-common/target
+/ProjectSimulation/fake-ear/target
+/ProjectSimulation/fake-ejb/target
+/ProjectSimulation/fake-jaxws/target
+/ProjectSimulation/fake-rest-jaxrs/target
+/fake-project/fake-ejb/target
+/fake-project/fake-ear/target
+/fake-project/fake-jaxws/target
+/fake-project/fake-rest-jaxrs/target
