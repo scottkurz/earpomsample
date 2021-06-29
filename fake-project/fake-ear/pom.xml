@@ -51,7 +51,7 @@
 									<groupId>io.openliberty.tools</groupId>
 									<artifactId>liberty-maven-plugin</artifactId>
 									<!-- <version>3.3.4</version> -->
-									 <version>3.3.5-M2-SNAPSHOT</version>
+									 <version>3.3.5-M2</version>
 									<executions>								
 										<execution>
 											<id>thebas</id>
@@ -59,12 +59,24 @@
 											<goals>
 												<goal>deploy</goal>
 											</goals>
-											<configuration>
-												<installDirectory>C:/workingarea/unzip/openliberty-21.0.0.6</installDirectory>
-												<looseApplication>true</looseApplication>
-											</configuration>
 										</execution>
 									</executions>
+                                        											<configuration>
+												<looseApplication>true</looseApplication>
+                                                <!--
+                                <runtimeArtifact>
+                                    <groupId>io.openliberty</groupId>
+                                    <artifactId>openliberty-kernel</artifactId>
+                                    <version>21.0.0.6</version>
+                                    <type>zip</type>
+                                </runtimeArtifact>
+                                                -->
+                                                <installDirectory>C:\aaa\work\tmp\rid\wlp</installDirectory>
+                                                <!--
+                                                <runtimeInstallDirectory>C:\aaa\work\tmp\rid</runtimeInstallDirectory>
+                                                -->
+											</configuration>
+
 								</plugin>
 							</plugins>
 						</build>
